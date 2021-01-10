@@ -4,18 +4,16 @@
 
 ## users テーブル
 
-| Column        | Type        | Options     |
-| ------------- | ----------- | ----------- |
-| nickname      | string      | null: false |
-| mail_address  | string      | null: false |
-| password      | string      | null: false |
-| name_sei      | string      | null: false |
-| name_sei      | string      | null: false |
-| name_kana_sei | string      | null: false |
-| name_kana_mei | string      | null: false |
-| birth_year    | integer     | null: false |
-| birth_month   | integer     | null: false |
-| birth_day     | integer     | null: false |
+| Column        | Type        | Options                  |
+| ------------- | ----------- | ------------------------ |
+| nickname      | string      | null: false              |
+| mail_address  | string      | null: false,unique: true |
+| password      | string      | null: false              |
+| name_sei      | string      | null: false              |
+| name_sei      | string      | null: false              |
+| name_kana_sei | string      | null: false              |
+| name_kana_mei | string      | null: false              |
+| birth_date    | date        | null: false              |
 
 ### Association
 
@@ -25,18 +23,17 @@
 
 ## products テーブル
 
-| Column       | Type    | Options     |
-| ------------ | ------- | ----------- |
-| image        | string  | null: false |
-| name         | string  | null: false |
-| describe     | string  | null: false |
-| category     | string  | null: false |
-| state        | string  | null: false |
-| ship_charge  | string  | null: false |
-| area         | string  | null: false |
-| ship_day     | string  | null: false |
-| price        | integer | null: false |
-| purchase_flg | integer |             |
+| Column         | Type    | Options     |
+| -------------- | ------- | ----------- |
+| name           | string  | null: false |
+| describe       | string  | null: false |
+| category_id    | integer | null: false |
+| state_id       | integer | null: false |
+| ship_charge_id | integer | null: false |
+| area_id        | integer | null: false |
+| ship_day_id    | integer | null: false |
+| price          | integer | null: false |
+| purchase_flg   | integer |             |
 
 
 ### Association
@@ -59,9 +56,4 @@
 
 ## credits テーブル
 
-| Column           | Type       | Options                        |
-| -----------------| ---------- | ------------------------------ |
-| credit_card_no   | integer    | null: false, foreign_key: true |
-| expiration_month | integer    | null: false, foreign_key: true |
-| expiration_year  | integer    | null: false, foreign_key: true |
-| security_cd      | integer    | null: false, foreign_key: true |
+
