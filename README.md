@@ -4,16 +4,16 @@
 
 ## users テーブル
 
-| Column        | Type        | Options                  |
-| ------------- | ----------- | ------------------------ |
-| nickname      | string      | null: false              |
-| mail_address  | string      | null: false,unique: true |
-| password      | string      | null: false              |
-| name_sei      | string      | null: false              |
-| name_sei      | string      | null: false              |
-| name_kana_sei | string      | null: false              |
-| name_kana_mei | string      | null: false              |
-| birth_date    | date        | null: false              |
+| Column             | Type        | Options                  |
+| ------------------ | ----------- | ------------------------ |
+| nickname           | string      | null: false              |
+| email              | string      | null: false,unique: true |
+| encrypted_password | string      | null: false              |
+| name_sei           | string      | null: false              |
+| name_mei           | string      | null: false              |
+| name_kana_sei      | string      | null: false              |
+| name_kana_mei      | string      | null: false              |
+| birth_date         | date        | null: false              |
 
 ### Association
 
