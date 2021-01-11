@@ -50,10 +50,18 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :products
+- belongs_to :user
+- belongs_to :product
 
+■deliveryテーブル
+| Column           | Type     | Options     |
+| -----------------| ---------| ------------|
+| zip_cd           | integer  | null: false |
+| prefectures      | string   | null: false |
+| municipality     | string   | null: false |
+| address          | string   | null: false |
+| building         | string   | null: false |
+| tel              | string   | null: false |
 
-## credits テーブル
 
 
