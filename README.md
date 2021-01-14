@@ -23,17 +23,17 @@
 
 ## products テーブル
 
-| Column         | Type    | Options                        |
-| -------------- | ------- | ------------------------------ |
-| name           | string  | null: false 　　 　             |
-| describe       | text    | null: false                    |
-| category_id    | integer | null: false 　　 　             |
-| state_id       | integer | null: false 　　 　             |
-| ship_charge_id | integer | null: false 　　              　|
-| prefectures_id | integer | null: false 　　              　|
-| ship_day_id    | integer | null: false　　　               |
-| price          | integer | null: false 　　　              |
-| user_id        | integer | null: false, foreign_key: true |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| name           | string     | null: false 　　 　             |
+| describe       | text       | null: false                    |
+| category_id    | integer    | null: false 　　 　             |
+| state_id       | integer    | null: false 　　 　             |
+| ship_charge_id | integer    | null: false 　　              　|
+| prefectures_id | integer    | null: false 　　              　|
+| ship_day_id    | integer    | null: false　　　               |
+| price          | integer    | null: false 　　　              |
+| user           | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -56,15 +56,15 @@
 
 ## address テーブル
 
-| Column           | Type     | Options                          |
-| -----------------| ---------| ---------------------------------|
-| zip_cd           | string   | null: false                      |
-| prefectures_id   | integer  | null: false                      |
-| municipality     | string   | null: false                      |
-| address          | string   | null: false                      |
-| building         | string   |                                  |
-| tel              | string   | null: false                      |
-| product_user     | integer  | null: false, foreign_key: true   |
+| Column           | Type       | Options                          |
+| -----------------| -----------| ---------------------------------|
+| zip_cd           | string     | null: false                      |
+| prefectures_id   | integer    | null: false                      |
+| municipality     | string     | null: false                      |
+| address          | string     | null: false                      |
+| building         | string     |                                  |
+| tel              | string     | null: false                      |
+| product_user     | references | null: false, foreign_key: true   |
 
 
 ### Association
