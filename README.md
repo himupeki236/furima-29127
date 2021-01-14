@@ -38,7 +38,7 @@
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one :order_user
 
 ## order_users テーブル
@@ -58,7 +58,7 @@
 
 | Column           | Type     | Options                          |
 | -----------------| ---------| ---------------------------------|
-| zip_cd           | integer  | null: false                      |
+| zip_cd           | string   | null: false                      |
 | prefectures_id   | integer  | null: false                      |
 | municipality     | string   | null: false                      |
 | address          | string   | null: false                      |
@@ -69,5 +69,5 @@
 
 ### Association
 
-- belongs_to :order_users
+- belongs_to :order_user
 
