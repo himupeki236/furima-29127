@@ -9,47 +9,6 @@ RSpec.describe User, type: :model do
     it "nickname、email、password、password_confirmation、name_sei、name_mei、name_kana_sei、name_kana_mei、birth_dateが存在すれば登録できる" do
       expect(@user).to be_valid
     end
-    it "nicknameが40文字以下であれば登録できる" do
-      @user.nickname = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-      expect(@user).to be_valid
-    end
-    it "passwordとpassword_confirmationが英数字を含んだ6文字以上であれば登録できる" do
-      @user.password = "a12345"
-      @user.password_confirmation = "a12345"
-      expect(@user).to be_valid
-    end
-    it "name_seiが全角カナであれば登録できる" do
-      @user.name_sei = "ア"
-      expect(@user).to be_valid
-    end
-    it "name_seiがひらがなであれば登録できる" do
-      @user.name_sei = "あ"
-      expect(@user).to be_valid
-    end
-    it "name_seiが漢字であれば登録できる" do
-      @user.name_sei = "阿"
-      expect(@user).to be_valid
-    end
-    it "name_meiが全角カナであれば登録できる" do
-      @user.name_mei = "ア"
-      expect(@user).to be_valid
-    end
-    it "name_meiがひらがなであれば登録できる" do
-      @user.name_mei = "あ"
-      expect(@user).to be_valid
-    end
-    it "name_meiが漢字であれば登録できる" do
-      @user.name_mei = "阿"
-      expect(@user).to be_valid
-    end
-    it "name_kana_seiが全角カナであれば登録できる" do
-      @user.name_kana_sei = "ア"
-      expect(@user).to be_valid
-    end
-    it "name_kana_meiが全角カナであれば登録できる" do
-      @user.name_kana_mei = "ア"
-      expect(@user).to be_valid
-    end
   end
 
   describe '新規登録がうまくいかないとき' do
@@ -82,24 +41,30 @@ RSpec.describe User, type: :model do
     end
     it "passwordが5文字以下であれば登録できない" do
       @user.password = 'a1234'
-      @user.password_confirmation = "000000"
+      @user.password_confirmation = 'a1234'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
     end
     it "passwordが数字のみでは登録できない" do
       @user.password = '123456'
-      @user.password_confirmation = "123456"
+      @user.password_confirmation = '123456'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is invalid")
     end
     it "passwordが英字のみでは登録できない" do
-      @user.password = 'aaaaaa'
+      @user.password = "aaaaaa"
+      @user.password_confirmation = "aaaaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+    it "passwordが全角を含んでは登録できない" do
+      @user.password = "ａ12345"
       @user.password_confirmation = "aaaaaa"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is invalid")
     end
     it "passwordが存在してもpassword_confirmationが空では登録できない" do
-      @user.password = 'a12345'
+      @user.password = "a12345"
       @user.password_confirmation = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
