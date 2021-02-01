@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
   # カレントユーザー取得
-  before_action :authenticate_user!
-  before_action :login_check, only: [:new]
+  before_action :authenticate_user!, only: [:new]
 
   def index
     # @products = Product.all
@@ -24,13 +23,6 @@ class ProductsController < ApplicationController
   end
 
   private
-
-  # ログインしてない場合サインインページに遷移する
-  def login_check
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
-  end
 
   # 登録するカラムを制御をする
   def product_params

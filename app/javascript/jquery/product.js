@@ -3,15 +3,16 @@ $(function() {
   // 価格入力時にイベント発火
   $('#item-price').on('input', function() {
     // 価格の値を取得
-    var i = $('#item-price').val();
+    const value = $('#item-price').val();
     // 販売手数料の計算
-    var result_a = i * 0.1
+    const commission = value * 0.1
     // 販売利益の計算
-    var result_p = i - result_a
+    const profit = value - commission
     // 販売手数料の値を変更
-    $('#add-tax-price').text(result_a);
+    $('#add-tax-price').text(commission);
     // 販売利益の値を変更
-    $('#profit').text(result_p);
+    $('#profit').text(profit);
   });
 });
+
 
