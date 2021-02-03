@@ -62,6 +62,31 @@ RSpec.describe Product, type: :model do
       @product.valid?
       expect(@product.errors.full_messages).to include("Ship day must be other than 1")
     end
+    it "category_idが空では投稿できない" do
+      @product.category_id = nil
+      @product.valid?
+      expect(@product.errors.full_messages).to include("Category can't be blank")
+    end
+    it "state_idが空では投稿できない" do
+      @product.state_id = nil
+      @product.valid?
+      expect(@product.errors.full_messages).to include("State can't be blank")
+    end
+    it "ship_charge_idが空では投稿できない" do
+      @product.ship_charge_id = nil
+      @product.valid?
+      expect(@product.errors.full_messages).to include("Ship charge can't be blank")
+    end
+    it "prefectures_idが空では投稿できない" do
+      @product.prefectures_id = nil
+      @product.valid?
+      expect(@product.errors.full_messages).to include("Prefectures can't be blank")
+    end
+    it "ship_day_idが空では投稿できない" do
+      @product.ship_day_id = nil
+      @product.valid?
+      expect(@product.errors.full_messages).to include("Ship day can't be blank")
+    end
     it "priceが空では投稿できない" do
       @product.price = nil
       @product.valid?
