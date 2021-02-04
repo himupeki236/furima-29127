@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    #@products = Product.all
+    @products = Product.order("created_at DESC")
   end
 
   def new
@@ -14,10 +14,10 @@ class ProductsController < ApplicationController
     # 何を新しく保存するか指定
     @product = Product.new(product_params)  
     # もし保存ができたらindexに遷移
-    if @product.save   
+    if @product.save
       redirect_to root_path
     # できなければnewに遷移
-    else   
+    else
       render :new
     end
   end
