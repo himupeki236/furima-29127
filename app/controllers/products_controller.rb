@@ -22,11 +22,22 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show
+    # パラメータと一致するidのレコードを取得
+    @product = Product.find(params[:id])
+    # user_idを取得
+    user_id = @product.user_id
+    # Productモデルのuser_idと一致するUserモデルのレコードを取得
+    @user = User.find(user_id)
+    # user_idと一致するUserモデルのレコードを取得
+    # @order = OrderUser.find(user_id)
+  end
+
   private
 
   # 登録するカラムを制御をする
   def product_params
-    params.require(:product).permit(:image, :name, :describe, :category_id, :state_id, :ship_charge_id, :prefectures_id, :ship_day_id, :price).merge(user_id: current_user.id)
+    params.require(:product).permit(:image, :name, :describe, :category_id, :state_id, :ship_charge_id, :prefecture_id, :ship_day_id, :price).merge(user_id: current_user.id)
   end
 end
 

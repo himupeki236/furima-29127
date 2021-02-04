@@ -20,7 +20,7 @@ class Product < ApplicationRecord
       validates :category_id
       validates :state_id
       validates :ship_charge_id
-      validates :prefectures_id
+      validates :prefecture_id
       validates :ship_day_id
     end
   end
