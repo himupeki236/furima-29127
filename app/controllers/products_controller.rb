@@ -25,9 +25,6 @@ class ProductsController < ApplicationController
   def show
     # パラメータと一致するidのレコードを取得
     @product = Product.find(params[:id])
-    @product.user
-    # user_idと一致するUserモデルのレコードを取得
-    # @order = OrderUser.find(user_id)
   end
 
   private
