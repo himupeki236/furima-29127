@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   # カレントユーザー取得
   before_action :authenticate_user!, only: [:new, :create]
+  # パラメータと一致するidのレコードを取得
+  before_action :set_product, only: [:show, :edit, :update]
 
   def index
     @products = Product.order("created_at DESC")
@@ -23,8 +25,22 @@ class ProductsController < ApplicationController
   end
 
   def show
-    # パラメータと一致するidのレコードを取得
-    @product = Product.find(params[:id])
+
+  end
+
+  def edit
+    
+  end 
+
+  def update
+    @product.update(product_params)
+    # もし保存ができたらshowに遷移
+    if @product.save
+      redirect_to product_path(@product.id)
+      # できなければeditに遷移
+    else
+      render :edit
+    end
   end
 
   private
@@ -33,5 +49,9 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:image, :name, :describe, :category_id, :state_id, :ship_charge_id, :prefecture_id, :ship_day_id, :price).merge(user_id: current_user.id)
   end
-end
 
+  def set_product
+    # パラメータと一致するidのレコードを取得
+    @product = Product.find(params[:id])
+  end
+end
