@@ -33,9 +33,8 @@ class ProductsController < ApplicationController
   end 
 
   def update
-    @product.update(product_params)
     # もし保存ができたらshowに遷移
-    if @product.save
+    if @product.update(product_params)
       redirect_to product_path(@product.id)
       # できなければeditに遷移
     else
