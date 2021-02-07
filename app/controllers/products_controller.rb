@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   # カレントユーザー取得
   before_action :authenticate_user!, only: [:new, :create]
   # パラメータと一致するidのレコードを取得
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.order("created_at DESC")
@@ -39,6 +39,13 @@ class ProductsController < ApplicationController
       # できなければeditに遷移
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if current_user.id = @product.id
+      @product.destroy
+      redirect_to root_path
     end
   end
 
