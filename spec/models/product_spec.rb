@@ -53,7 +53,7 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Ship charge must be other than 1")
     end
     it "prefectures_idが1では投稿できない" do
-      @product.prefectures_id = 1
+      @product.prefecture_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Prefectures must be other than 1")
     end
@@ -78,7 +78,7 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Ship charge can't be blank")
     end
     it "prefectures_idが空では投稿できない" do
-      @product.prefectures_id = nil
+      @product.prefecture_id = nil
       @product.valid?
       expect(@product.errors.full_messages).to include("Prefectures can't be blank")
     end
