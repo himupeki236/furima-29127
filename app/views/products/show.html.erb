@@ -39,15 +39,12 @@
       <%= link_to '削除', product_path, method: :delete, class:'item-destroy' %>
 
       <%# ログインユーザーが商品出品者でない場合 %>
-      <% else %>
-        
-        <%# @productのidに紐づくorder_userがnilであるかで購入済かを判定する %>
-        <%# 購入されてない場合表示する %>
-        <% if @product.order_user == nil %>
-          <%# 購入可能 %>
-          <%= link_to '購入画面に進む', product_orders_path(@product.id), class:"item-red-btn"%>
-        <% end %>
+      <%# @productのidに紐づくorder_userがnilであるかで購入済かを判定する(購入されてない場合表示する) %>
+      <% elsif @product.order_user == nil %>
+        <%# 購入可能 %>        
+        <%= link_to '購入画面に進む', product_orders_path(@product.id), class:"item-red-btn"%>
       <% end %>
+      <%# end %>
     <% end %>
     
     <div class="item-explain-box">

@@ -13,6 +13,8 @@ class Order
     validates :tel
     # tokenが空では保存できない（クレジットカード決済機能）
     validates :token
+    validates :user_id
+    validates :product_id
   end
   validates :zip_cd, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
   validates :prefecture_id, numericality: { other_than: 1 }
