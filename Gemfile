@@ -65,3 +65,7 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 
 gem "jquery-rails"
+
+gem 'pry-rails'
+
+gem 'payjp'

@@ -8,11 +8,16 @@
     </h2>
     <div class='item-img-content'>
       <%= image_tag @product.image, class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
+
+      <%# 商品購入済の場合にソールドアウトを表示 %>
+      <%# productモデルとorder_userモデルはアソシエーションでhas_oneになっているため %>
+      <%# @productのidに紐づくorder_userがnilでないかで購入済かを判定する %>
+      <% if @product.order_user != nil %>
       <div class='sold-out'>
-        <%# <span>Sold Out!!</span> %>
+        <span>Sold Out!!</span>
       </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <% end %>
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -23,21 +28,23 @@
       </span>
     </div>
 
+    <%# ログインしているかどうか判定 %>
     <% if user_signed_in? %>
+      <%# ログインユーザーが商品出品者である場合 %>
       <% if current_user.id == @product.user_id %>
 
+      <%# 編集・削除可能 %>
       <%= link_to '商品の編集', edit_product_path, method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', product_path, method: :delete, class:'item-destroy' %>
 
-      <% else %>
-
-        <%# if @order %>
-        <%# else %>
-          <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
-        <%# end %>
-
+      <%# ログインユーザーが商品出品者でない場合 %>
+      <%# @productのidに紐づくorder_userがnilであるかで購入済かを判定する(購入されてない場合表示する) %>
+      <% elsif @product.order_user == nil %>
+        <%# 購入可能 %>        
+        <%= link_to '購入画面に進む', product_orders_path(@product.id), class:"item-red-btn"%>
       <% end %>
+      <%# end %>
     <% end %>
     
     <div class="item-explain-box">
@@ -47,6 +54,7 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
+          <%# アソシエーションしているので@product.テーブル名.カラム名 %>
           <td class="detail-value"><%= @product.user.nickname %></td>
         </tr>
         <tr>

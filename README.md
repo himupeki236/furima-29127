@@ -64,7 +64,7 @@
 | address          | string     | null: false                      |
 | building         | string     |                                  |
 | tel              | string     | null: false                      |
-| product_user     | references | null: false, foreign_key: true   |
+| order_user      | references | null: false, foreign_key: true   |
 
 
 ### Association
