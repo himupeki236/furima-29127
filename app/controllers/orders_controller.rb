@@ -3,12 +3,8 @@ class OrdersController < ApplicationController
   before_action :set_product, only: [:index, :create]
   # カレントユーザー取得
   before_action :authenticate_user!, only: [:index, :create]
-  # 商品出品者の場合画面非表示
-  before_action :check_user
-  # 購入済商品の場合画面非表示
-  before_action :check_product
-
-
+  # 商品出品者と購入済商品の場合画面非表示
+  before_action :check_user_product
 
   def index
     # view側でエラー表示させるためにモデルのインスタンスを渡す必要がある。
@@ -55,18 +51,10 @@ class OrdersController < ApplicationController
     )
   end
 
-  # 商品出品者の場合画面非表示
-  def check_user
-    # 商品idに紐づくユーザーがログインユーザーと一致する場合
-    if @product.user_id == current_user.id
-      redirect_to root_path
-    end
-  end
-
-  # 購入済商品の場合画面非表示
-  def check_product
-    # 商品idに紐づくorder_userテーブルのレコードがnilでない場合
-    if @product.order_user != nil
+  # 商品出品者と購入済商品の場合画面非表示
+  def check_user_product
+    # 商品idに紐づくユーザーがログインユーザーと一致する場合と商品idに紐づくorder_userテーブルのレコードがnilでない場合
+    if @product.user_id == current_user.id or @product.order_user != nil
       redirect_to root_path
     end
   end
