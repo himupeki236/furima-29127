@@ -2,15 +2,23 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   before do
-    user = FactoryBot.build(:user)
-    user.id = 1
-    product = FactoryBot.build(:product)
-    product.id = 1
+    # user.idを取得するためcreateする
+    user = FactoryBot.create(:user)
+    # product.idを取得するためcreateする
+    product = FactoryBot.create(:product)
+    # user.idとproduct.idを使ってorderを生成する
     @order = FactoryBot.build(:order, user_id: user.id, product_id: product.id)
+    # DBのエラー対応（beforeに処理が多い時にエラーが発生するため）
+    sleep(0.5)
   end
 
   describe '購入ができるとき' do
-    it "zip_cd、prefecture_id、municipality、address、building、tel、user_id、user_id、tokenが存在すれば登録できる" do
+    it "zip_cd、prefecture_id、municipality、building、address、tel、user_id、user_id、tokenが存在すれば登録できる" do
+      expect(@order).to be_valid
+    end
+
+    it "buildingがなくても登録できる" do
+      @order.building = nil
       expect(@order).to be_valid
     end
   end

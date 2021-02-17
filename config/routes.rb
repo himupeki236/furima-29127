@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # resources :products, only: [:new, :index, :create, :show, :edit, :update, :destroy]
   resources :products do
     # 詳細画面の商品idをリクエストとして渡すためにネストさせる
-    resources :orders, only: [:create, :index, :new]
+    resources :orders, only: [:create, :index]
   end
   root to: 'products#index'
 end

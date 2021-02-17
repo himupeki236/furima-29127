@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   # パラメータと一致するidのレコードを取得
-  before_action :set_product, only: [:index, :create, :check_user, :check_product]
+  before_action :set_product, only: [:index, :create]
   # カレントユーザー取得
-  before_action :authenticate_user!, only: [:index, :create, :check_user]
+  before_action :authenticate_user!, only: [:index, :create]
   # 商品出品者の場合画面非表示
   before_action :check_user
   # 購入済商品の場合画面非表示
